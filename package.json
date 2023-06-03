@@ -1,0 +1,20 @@
+{
+  "name": "twitter-app",
+  "version": "1.0.0",
+  "description": "first node APP",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Medo3-coder/twitter-app.git"
+  },
+  "author": "mohamed-farouk",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Medo3-coder/twitter-app/issues"
+  },
+  "homepage": "https://github.com/Medo3-coder/twitter-app#readme"
+}
