@@ -5,6 +5,16 @@ const port = 3000;
 const server = app.listen(port, () => console.log(`listening on port: ${port}`));
 
 app.set('view engine', 'pug');
+app.set("views", "views");
+
+//routes 
+// Routes
+const loginRoute = require('./routes/loginRoute');
+
+app.use("/login", loginRoute);
+
+
+
 app.get('/', login, (req, res, next) => {
 
     var payload = {
