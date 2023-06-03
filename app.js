@@ -5,5 +5,9 @@ const server = app.listen(port, () => console.log(`listening on port: ${port}`))
 
 app.set('view engine', 'pug');
 app.get('/' , (req, res,next) => {
-    res.status(200).render('home');
+
+   var payload = {
+      pageTitle: "home",
+   }
+    res.status(200).render('home' , payload);
 })
