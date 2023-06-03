@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/Medo3-coder/twitter-app/issues"
   },
-  "homepage": "https://github.com/Medo3-coder/twitter-app#readme"
+  "homepage": "https://github.com/Medo3-coder/twitter-app#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
 }
