@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const router = express.Router();
 const authController = require("../controllers/site/authController/authController");
+const User = require("../models/userModel");
 
 
 router.get('/', authController.register);
@@ -16,17 +17,26 @@ router.post('/', (req, res, next) => {
     var password = req.body.password.trim();
 
     var payload = req.body;
-    if(firstName && lastName && username && email && password){
+    if (firstName && lastName && username && email && password) {
+        User.findOne({
+            $or: [
+                { username: username },
+                { email: email }
+            ]
+        }).then((user) => {
+            console.log(user);
+        })
 
+        console.log('heelo');
     }
-    else{
-     payload.errorMessage = "make sure each field has a valid value";
-     res.status(200).render("register" , payload);
+    else {
+        payload.errorMessage = "make sure each field has a valid value";
+        res.status(200).render("register", payload);
     }
 });
 
 
-module.exports = router ;
+module.exports = router;
 
 
 
