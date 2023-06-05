@@ -2,16 +2,11 @@ const express = require('express');
 const app = express();
 const login = require('./middleware/requireLogin')
 const port = 3000;
+const mongoose = require('./database');
 const path = require('path');
 const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
-mongoose.connect("mongodb+srv://medo:LoooooL2244565@twitterclonecluster.or0hxwd.mongodb.net/?retryWrites=true&w=majority")
-    .then(() => {
-        console.log('database connection established')
-    })
-    .catch((err) => {
-        console.log('database connection error' + err.message)
-    })
+
+
 const server = app.listen(port, () => console.log(`listening on port: ${port}`));
 
 app.set('view engine', 'pug');
