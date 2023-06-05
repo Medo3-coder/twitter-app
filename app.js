@@ -9,8 +9,6 @@ const server = app.listen(port, () => console.log(`listening on port: ${port}`))
 app.set('view engine', 'pug');
 app.set("views", "views");
 app.use(bodyParser.urlencoded({ extended: false }));
-
-
 app.use(express.static(path.join(__dirname, 'public')));
 
 //routes 
@@ -18,15 +16,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 const loginRoute = require('./routes/loginRoute');
 const registerRoute = require('./routes/registerRoute');
 
+app.use('/' ,loginRoute )
 app.use("/login", loginRoute);
 app.use("/register", registerRoute);
 
 
 
-app.get('/', login, (req, res, next) => {
 
-    var payload = {
-        pageTitle: "home",
-    }
-    res.status(200).render('home', payload);
-})

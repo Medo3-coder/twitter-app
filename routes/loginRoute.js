@@ -1,12 +1,13 @@
 const express = require('express');
 const app = express();
 const router = express.Router();
+const login = require('../middleware/requireLogin')
+const authController = require("../controllers/site/authController/authController");
 
 
-app.set('view engine', 'pug');
-router.get('/', (req, res, next) => {
-    res.status(200).render("login");
-});
+router.get('/', login,authController.homePage)
+
+router.get('/login', authController.login );
 
 
 module.exports = router ;
