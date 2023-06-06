@@ -2,17 +2,6 @@ const User = require("../../../models/userModel");
 const bcrypt = require("bcrypt");
 
 
-//get login page
-exports.login = (req, res) => {
-    res.status(200).render("login");
-}
-
-//get register page
-exports.registerPage = (req, res) => {
-    res.status(200).render("register");
-}
-
-
 exports.homePage = (req, res) => {
     var payload = {
         pageTitle: "home",
@@ -20,6 +9,52 @@ exports.homePage = (req, res) => {
     }
     res.status(200).render('home', payload);
 }
+
+
+//get login page
+exports.loginPage = (req, res) => {
+    res.status(200).render("auth/login");
+}
+
+exports.login = async (req, res) => {
+    var payload = req.body;
+
+    if (req.body.LogUsername && req.body.LogPassword) {
+        var user = await User.findOne({
+            $or: [
+                { username: req.body.LogUsername },
+                { email: req.body.LogUsername },
+            ]
+        })
+            .catch((error) => {
+                console.log(error);
+                payload.errorMessage = "Something went wrong.";
+                res.status(200).render("auth/login", payload);
+            });
+
+        if (user != null) {
+            var result = await bcrypt.compare(req.body.LogPassword, user.password);
+            if (result === true) {
+                req.session.user = user;
+                return res.redirect("/");
+            }
+        }
+
+        payload.errorMessage = "Login credentials incorrect.";
+        return res.status(200).render("auth/login", payload);
+
+    }
+    payload.errorMessage = "make sure each field has a valid value";
+    res.status(200).render("auth/login", payload);
+}
+
+//get register page
+exports.registerPage = (req, res) => {
+    res.status(200).render("auth/register");
+}
+
+
+
 
 exports.register = async (req, res) => {
 
@@ -41,7 +76,7 @@ exports.register = async (req, res) => {
             .catch((error) => {
                 console.error(error);
                 payload.errorMessage = "Something went wrong.";
-                res.status(200).render("register", payload);
+                res.status(200).render("auth/register", payload);
             });
 
         if (user == null) {
@@ -63,12 +98,12 @@ exports.register = async (req, res) => {
                 payload.errorMessage = "Username already in use.";
 
             }
-            res.status(200).render("register", payload);
+            res.status(200).render("auth/register", payload);
         }
     }
     else {
         payload.errorMessage = "make sure each field has a valid value";
-        res.status(200).render("register", payload);
+        res.status(200).render("auth/register", payload);
     }
 
 };
