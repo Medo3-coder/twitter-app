@@ -2,7 +2,7 @@ extends layouts/login-layout.pug
 block content
    .loginContainer 
        h1 Register 
-       form#registerForm(method="post" onsubmit="event.preventDefault(); validateForm();") 
+       form#registerForm(method="post" action='/postRegister' onsubmit="event.preventDefault(); validateForm();") 
             p.errorMessage #{errorMessage}
             input(type="text" , name="firstName", placeholder="First name", value=firstName required="") 
             input(type="text" , name="lastName", placeholder="Last name",value=lastName required="") 
