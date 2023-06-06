@@ -1,4 +1,5 @@
 const User = require("../../../models/userModel");
+const bcrypt = require("bcrypt");
 
 
 //get login page
@@ -26,7 +27,7 @@ exports.register = async (req, res) => {
     var lastName = req.body.lastName.trim();
     var username = req.body.username.trim();
     var email = req.body.email.trim();
-    var password = req.body.password.trim();
+    var password = req.body.password;
 
     var payload = req.body;
     if (firstName && lastName && username && email && password) {
@@ -45,6 +46,7 @@ exports.register = async (req, res) => {
         if (user == null) {
             // no user found
             var data = req.body;
+            data.password = await bcrypt.hash(password , 10);
             User.create(data)
                 .then((user) => {
                     console.log(user);
