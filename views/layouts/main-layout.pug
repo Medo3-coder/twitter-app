@@ -10,19 +10,35 @@ html(lang = "en")
         body  
             .wrapper 
                 .row 
-                    nav.col-2.
-                         span Navbar
-                    .mainSectionContainer.col-10.col-md-8
-                         block content 
+                    nav.col-2       
+                        a(href="/")
+                            i.fa-solid.fa-dove
+                        a(href="/")
+                            i.fa-solid.fa-house-chimney
+                        a(href="/search")
+                            i.fa-brands.fa-searchengin
+                        a(href="/notifications")
+                            i.fa-solid.fa-bell            
+                        a(href="/messages")
+                            i.fa-regular.fa-envelope
+                        a(href="/profile")
+                            i.fa-solid.fa-user
+                        a(href="/logout")
+                            i.fa-solid.fa-right-from-bracket      
 
-                    .d-none.d-md-block.col-md-2
+                    .mainSectionContainer.col-10.col-md-8.col-lg-6
+                        block content 
+
+                    .d-none.d-md-block.col-md-2.col-lg-4
                         span third col 
 
 
             
 
+            script(src='https://kit.fontawesome.com/c1462b3672.js', crossorigin='anonymous')
             script(src='https://code.jquery.com/jquery-3.7.0.min.js', integrity='sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=', crossorigin='anonymous')
             script(src='https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js', integrity='sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN', crossorigin='anonymous')
             script(src='https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js', integrity='sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+', crossorigin='anonymous')
+
 
 
