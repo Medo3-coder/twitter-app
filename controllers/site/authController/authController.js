@@ -107,3 +107,12 @@ exports.register = async (req, res) => {
     }
 
 };
+
+
+exports.logout = (req, res) => {
+    if (req.session) {
+        req.session.destroy(() => {
+            res.redirect("login");
+        });
+    }
+}
