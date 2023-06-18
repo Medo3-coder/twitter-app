@@ -1,8 +1,10 @@
-const User = require("../../../models/userModel");
+const {User} = require("../../models");
+
+
 const bcrypt = require("bcrypt");
 
 
-exports.homePage = (req, res) => {
+module.exports.homePage = (req, res) => {
     var payload = {
         pageTitle: "home",
         userLoggedIn: req.session.user
@@ -12,11 +14,11 @@ exports.homePage = (req, res) => {
 
 
 //get login page
-exports.loginPage = (req, res) => {
+module.exports.loginPage = (req, res) => {
     res.status(200).render("auth/login");
 }
 
-exports.login = async (req, res) => {
+module.exports.login = async (req, res) => {
     var payload = req.body;
 
     if (req.body.LogUsername && req.body.LogPassword) {
@@ -49,14 +51,14 @@ exports.login = async (req, res) => {
 }
 
 //get register page
-exports.registerPage = (req, res) => {
+module.exports.registerPage = (req, res) => {
     res.status(200).render("auth/register");
 }
 
 
 
 
-exports.register = async (req, res) => {
+module.exports.register = async (req, res) => {
 
 
     var firstName = req.body.firstName.trim();
@@ -109,7 +111,7 @@ exports.register = async (req, res) => {
 };
 
 
-exports.logout = (req, res) => {
+module.exports.logout = (req, res) => {
     if (req.session) {
         req.session.destroy(() => {
             res.redirect("login");
