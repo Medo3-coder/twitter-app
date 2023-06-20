@@ -4,7 +4,9 @@ const session = require('express-session');
 const port = 3000;
 const mongoose = require('./database');
 const path = require('path');
-const SiteRouter = require("./routes");
+const SiteRouter = require("./routes/site");
+const ApiRouter = require("./routes/api");
+
 const bodyParser = require('body-parser');
 
 
@@ -23,9 +25,11 @@ app.use(session({
     saveUninitialized: false  //session is created but not modified
 }))
 
-// routes
+// site routes
 app.use("/", SiteRouter);
 
+// api routes
+app.use("/", ApiRouter);
 
 
 

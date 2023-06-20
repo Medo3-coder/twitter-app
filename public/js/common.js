@@ -17,11 +17,11 @@ $("#submitPostButton").click(()=>{
     var button = $(event.target);
     var textbox = $("#postTextarea");
     var data = {
-        content: textbox.val(),
+        // content: textbox.val(),
     }
 
-    $.post("/api/post" , data , (postData , status , xhr) => {
-
+    $.post("/api/posts" , data , (postData , status , xhr) => {
+      alert(postData);
     });
 
 })
