@@ -20,7 +20,7 @@ $("#submitPostButton").click(() => {
         content: textbox.val(),
     }
 
-    $.post("/api/posts", data, (postData) => {
+    $.post("/api/add-post", data, (postData) => {
         var html = createPostHtml(postData);
         $(".postContainer").prepend(html); // prepend add it to front
         textbox.val("");

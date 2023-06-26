@@ -1,4 +1,4 @@
-const { Post , User } = require("../../models");
+const { Post, User } = require("../../models");
 
 module.exports.addPost = async (req, res) => {
 
@@ -12,7 +12,7 @@ module.exports.addPost = async (req, res) => {
         postedBy: req.session.user
     }
 
-        Post.create(postData).
+    Post.create(postData).
         then(async newPost => {
             newPost = await User.populate(newPost, { path: "postedBy" });
             res.status(201).send(newPost);
@@ -21,4 +21,13 @@ module.exports.addPost = async (req, res) => {
             console.log(err);
             console.sendStatus(400);
         });
+}
+
+module.exports.getPosts = (req, res) => {
+    //return all posts list
+    Post.find().then(results => res.status(200).send(results))
+        .catch(error => {
+            console.log(error);
+            res.sendStatus(400);
+        })
 }
