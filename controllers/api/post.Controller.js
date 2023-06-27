@@ -25,7 +25,8 @@ module.exports.addPost = async (req, res) => {
 
 module.exports.getPosts = (req, res) => {
     //return all posts list
-    Post.find().then(results => res.status(200).send(results))
+    Post.find().populate("postedBy").sort({"createdAt": "desc"})
+    .then(results => res.status(200).send(results))
         .catch(error => {
             console.log(error);
             res.sendStatus(400);

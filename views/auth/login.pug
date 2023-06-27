@@ -4,8 +4,13 @@ block content
        h1 Login 
        form(method="post" action='/loginIn') 
                 p.errorMessage #{errorMessage}
-                input(type="text" , name="LogUsername", placeholder="username or email" ,value=LogUsername, required="") 
-                input(type="password" , name="LogPassword", placeholder="password" required="") 
+                //- input(type="text" , name="LogUsername", placeholder="username or email" ,value=LogUsername, required="") 
+                //- input(type="password" , name="LogPassword", placeholder="password" required="") 
+
+                    //- for development
+                input(type="text" , name="LogUsername", placeholder="username or email" ,value="medo", required="") 
+                input(type="password" , name="LogPassword", placeholder="password" value="123456" required="") 
+
                 input(type="submit" , value="Login")
        a(href="/register") Need an account ? Register here. 
 
