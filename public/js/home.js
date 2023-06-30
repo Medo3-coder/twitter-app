@@ -1,7 +1,7 @@
 $(document).ready(() => {
     $.get("/api/get-posts", results => {
         outputPosts(results, $(".postContainer"))
-        console.log(results);
+        // console.log(results);
     })
 });
 

@@ -30,13 +30,31 @@ $("#submitPostButton").click(() => {
 
 });
 
+
+//Like button click handler
+$(document).on("click", ".likeButton", (event) => {
+    var button = $(event.target);
+    var postId = getPostIdFromElement(button);
+    console.log(postId);
+});
+
+function getPostIdFromElement(element) {
+     var isRoot = element.hasClass("post");
+     var rootElement = isRoot ? element : element.closest(".post");
+     var postId = rootElement.data().id;
+
+     if(postId === undefined) return alert("No post Id specified");
+
+     return postId;
+}
+
 function createPostHtml(postData) {
 
     var postedBy = postData.postedBy;
     var displayName = postedBy.firstName + " " + postedBy.lastName
-    var timestamp = timeDifference(new Date() , new Date(postData.createdAt));
+    var timestamp = timeDifference(new Date(), new Date(postData.createdAt));
 
-    return `<div class="post">
+    return `<div class="post" data-id="${postData._id}">
             <div class="mainContentContainer"> 
                 <div class="userImageContainer">
                     <img src="${postedBy.profilePic}">
@@ -64,7 +82,7 @@ function createPostHtml(postData) {
                         </div>
 
                         <div class="postButtonContainer"> 
-                            <button>
+                            <button class="likeButton">
                                 <i class="fa-regular fa-heart"></i>
                             </button>
                         </div>
