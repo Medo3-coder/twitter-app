@@ -7,7 +7,8 @@ const bcrypt = require("bcrypt");
 module.exports.homePage = (req, res) => {
     var payload = {
         pageTitle: "home",
-        userLoggedIn: req.session.user
+        userLoggedIn: req.session.user,
+        userLoggedInjs : JSON.stringify(req.session.user)
     }
     res.status(200).render('home', payload);
 }
