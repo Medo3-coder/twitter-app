@@ -35,17 +35,25 @@ $("#submitPostButton").click(() => {
 $(document).on("click", ".likeButton", (event) => {
     var button = $(event.target);
     var postId = getPostIdFromElement(button);
-    console.log(postId);
+    if (postId === undefined) return;
+
+    $.ajax({
+        url: `/api/post/${postId}/like`,
+        type: "PUT",
+        success: ((postData) => {
+            console.log(postData);
+        })
+
+    });
 });
 
 function getPostIdFromElement(element) {
-     var isRoot = element.hasClass("post");
-     var rootElement = isRoot ? element : element.closest(".post");
-     var postId = rootElement.data().id;
+    var isRoot = element.hasClass("post");
+    var rootElement = isRoot ? element : element.closest(".post");
+    var postId = rootElement.data().id;
 
-     if(postId === undefined) return alert("No post Id specified");
-
-     return postId;
+    if (postId === undefined) return alert("No post Id specified");
+    return postId;
 }
 
 function createPostHtml(postData) {
