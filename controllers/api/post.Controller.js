@@ -50,8 +50,12 @@ module.exports.likePost = async (req, res) => {
     })
 
     //insert post like 
-
-    res.status(200).send('yahoo');
+    var post = await Post.findByIdAndUpdate(postId, { [option]: { likes: userId } }, { new: true })
+    .catch(err => {
+        console.log(err);
+        res.sendStatus(400)
+    })
+    res.status(200).send(post);
 
 
 }
